@@ -19,7 +19,6 @@ def infix_to_postfix(tokens):
                 tmp = stack.pop()
                 queue.append(tmp)
             stack.append(tokens[i])
-
         elif tokens[i][0] == "LEFT_P":
             stack.append(tokens[i])
         elif tokens[i][0] == "RIGHT_P":
@@ -45,6 +44,8 @@ def calc(tokens):
             a = float(stack.pop())
             stack.append(a * (-1))
         elif tokens[i][0] == "OPERATOR" and tokens[i][1] != 'neg':
+            if len(stack) <2:
+                raise Exception("Пропущен операнд/операнды")
             a = float(stack.pop())
             b = float(stack.pop())
             if tokens[i][1] == '+':
@@ -61,4 +62,3 @@ def calc(tokens):
 
     result = stack.pop()
     return int(result) if result.is_integer() else result
-# поддержка отриц чисел
