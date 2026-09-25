@@ -6,3 +6,6 @@ class InvalidCommandError(Exception):
 
 class PassedOperandError(Exception):
     pass
+
+class DoubleBinaryOperatorError(Exception):
+    pass

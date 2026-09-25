@@ -1,0 +1,25 @@
+[units]
+
+[units.metric]
+base = "m"
+
+[units.metric.factors]
+mm = 0.001
+cm = 0.01
+m = 1
+km = 1000
+
+[units.mass]
+base = "g"
+
+[units.mass.factors]
+g = 1
+kg = 1000
+
+[units.temperature]
+base = "c"
+
+[units.temperature.units]
+c = true
+f = true
+k = true

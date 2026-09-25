@@ -1,20 +1,19 @@
-metric = ["mm", "cm", "m", "km"]
-mass = ["g", "kg"]
-temperature = ["c", "f", "k"]
-types = [metric, mass, temperature]
-
-to_base = {"mm": 0.001, "cm": 0.01, "m": 1, "km": 1000, "g": 1, "kg": 1000}
+from .config import mass, metric, temperature, to_base, types
 
 
 def is_compatible(unit_from, unit_to):
-    if unit_from not in (metric + mass + temperature):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
+    if unit_from not in (list(metric) + list(mass) + list(temperature)):
         raise ValueError(f"Неизвестная единица измерения: {unit_from}")
-    if unit_to not in (metric + mass + temperature):
+    if unit_to not in (list(metric) + list(mass) + list(temperature)):
         raise ValueError(f"Неизвестная единица измерения: {unit_to}")
     return any(unit_from in list and unit_to in list for list in types)
 
 
 def convert_temperature(value, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
     value = float(value)
     if unit_from == "c":
         celsius = value
@@ -38,6 +37,8 @@ def convert_temperature(value, unit_from, unit_to):
 
 
 def convert(value, unit_from, unit_to):
+    unit_from = unit_from.lower()
+    unit_to = unit_to.lower()
     value = float(value)
     if not is_compatible(unit_from, unit_to):
         raise ValueError(f"Нельзя перевести {unit_from} в {unit_to}")

@@ -1,3 +1,6 @@
+from toolkit.errors import DoubleBinaryOperatorError
+
+
 def tokenize(expr):
     i = 0
     tokens = []
@@ -27,6 +30,8 @@ def tokenize(expr):
             i += 1
 
         elif i < len(expr) and expr[i] in "+*/":
+            if expr[i] + expr[i + 1] == '++':
+                raise DoubleBinaryOperatorError("Ошибка: два бинарных оператора подряд")
             tokens.append(("OPERATOR", expr[i]))
             i += 1
 

@@ -65,4 +65,4 @@ def calc(tokens):
                 stack.append(b - a)
 
     result = stack.pop()
-    return int(result) if result.is_integer() else result
+    return result
